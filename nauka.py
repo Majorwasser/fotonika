@@ -1,16 +1,33 @@
-text = "2+3"
+text = "(2+3) * x"
+lexer = ["LPAREN" , "NUMBER" , "PLUS" , "RPAREN" , "STAR" , "IDENTIFIER"]
 
 def sprawdz_cotojest(text):
     if text.isalpha():
-        print (f"Znak '{text}' to litera")
+        return(lexer[5] , text)
     elif text.isdigit():
-        print(f"Znak '{text}' to liczba")
-
-
-    for znak in text:
-        print(znak)
+        return(lexer[1] ,text)
+    elif text == "+":
+        return(lexer[2], text)
+    elif text =="*":
+        return(lexer[4],text)
+    elif text == " "  :
+        pass
+    elif text == "(":
+        return(lexer[0], text)
+    elif text == ")":
+        return(lexer[3],text)
+    
 
     
 
-sprawdz_cotojest(text)
+finał =[]
+for pojedynczo in text:      
+    wynik = sprawdz_cotojest(pojedynczo)
+    if wynik != None:
+        finał.append(wynik)
+        
+print(*finał)     
+       
+
+
     
