@@ -1,5 +1,6 @@
-text = "(2+3) * x"
-lexer = ["LPAREN" , "NUMBER" , "PLUS" , "RPAREN" , "STAR" , "IDENTIFIER"]
+text = "(2+3)*(4-1)"
+
+lexer = ["LPAREN" , "NUMBER" , "PLUS" , "RPAREN" , "STAR" , "IDENTIFIER","MINUS"]
 
 def sprawdz_cotojest(text):
     if text.isalpha():
@@ -16,6 +17,8 @@ def sprawdz_cotojest(text):
         return(lexer[0], text)
     elif text == ")":
         return(lexer[3],text)
+    elif text == "-":
+        return(lexer[6],text)
     
 
     
