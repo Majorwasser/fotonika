@@ -1,4 +1,4 @@
-text = "(2+3)*(4-1)"
+text = "2+3"
 
 lexer = ["LPAREN" , "NUMBER" , "PLUS" , "RPAREN" , "STAR" , "IDENTIFIER","MINUS"]
 

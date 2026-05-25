@@ -1,3 +1,5 @@
+from nauka import finał
+
 matma = "2 + 3 * 4"
 
 parser = ["3","*","4"]
@@ -12,17 +14,33 @@ class Number:
     value:float
 @dataclass
 class BinaryOp:
+    
     left:str
     op:str
     right:str
+    
 left = Number(3)
 op = "*"
 right = Number(4)
 
-t = BinaryOp(
+
+t = BinaryOp( 
 left = left,
 op = op,
 right = right,
 )
 
-print(t)
+węzeł_mnożenia = BinaryOp(left=Number(3) , op ="*", right =Number(4))
+węzeł_dodawania = BinaryOp(left=Number(2) , op ="+" , right=węzeł_mnożenia)
+
+
+print(węzeł_dodawania)
+
+
+
+def bierz_wartosci(finał):
+    if finał[0][0] == "NUMBER":
+        print(Number(finał[0][1]))
+
+
+bierz_wartosci(finał)
