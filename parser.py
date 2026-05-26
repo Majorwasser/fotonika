@@ -6,7 +6,7 @@ parser = ["3","*","4"]
 plus = ["2","+"]
 plus.append(parser)
 
-print(plus)
+#print(plus)
 
 from dataclasses import dataclass
 @dataclass
@@ -34,13 +34,26 @@ węzeł_mnożenia = BinaryOp(left=Number(3) , op ="*", right =Number(4))
 węzeł_dodawania = BinaryOp(left=Number(2) , op ="+" , right=węzeł_mnożenia)
 
 
-print(węzeł_dodawania)
+#print(węzeł_dodawania)
 
 
 
 def bierz_wartosci(finał):
-    if finał[0][0] == "NUMBER":
-        print(Number(finał[0][1]))
+    lewa = None
+    Operator = None
+    for cotojest in finał:
+        if lewa != None and Operator != None and cotojest[0] == "NUMBER":
+            return BinaryOp(left=lewa , op= Operator , right=Number(cotojest[1]))
+        if cotojest[0] == "NUMBER" and Operator == None:
+            lewa = Number(cotojest[1])
+        if cotojest[0] == "PLUS":
+            Operator = cotojest[1]
+    
+            
+
+        
 
 
-bierz_wartosci(finał)
+
+print (bierz_wartosci(finał))
+    
