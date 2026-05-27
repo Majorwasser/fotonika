@@ -48,6 +48,8 @@ def bierz_wartosci(finał):
             lewa = Number(cotojest[1])
         if cotojest[0] == "PLUS":
             Operator = cotojest[1]
+        if cotojest[0] == "STAR":
+            Operator = cotojest[1]
     
             
 
@@ -55,5 +57,19 @@ def bierz_wartosci(finał):
 
 
 
-print (bierz_wartosci(finał))
+#print (bierz_wartosci(finał))
     
+
+
+def parse_factor(finał):
+    for sprawdzaj in finał:
+        if sprawdzaj[0] == "NUMBER":
+            return (Number(sprawdzaj[1]))
+        if sprawdzaj[0] == "(":
+            print("Widze nawias")
+
+
+print(parse_factor(finał))
+
+
+def parse_term

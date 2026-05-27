@@ -29,7 +29,7 @@ for pojedynczo in text:
     if wynik != None:
         finał.append(wynik)
         
-#print(*finał)     
+print(*finał)     
        
 
 
