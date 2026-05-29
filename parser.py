@@ -61,15 +61,25 @@ def bierz_wartosci(finał):
     
 
 
-def parse_factor(finał):
-    for sprawdzaj in finał:
-        if sprawdzaj[0] == "NUMBER":
-            return (Number(sprawdzaj[1]))
-        if sprawdzaj[0] == "(":
-            print("Widze nawias")
+def parse_factor(finał , i):
+    if finał[i][0] =="NUMBER":
+        return(Number(finał[i][1]))
+    
+print(parse_factor(finał , 0))
+        
 
 
-print(parse_factor(finał))
 
 
-def parse_term
+
+def parse_term (finał):
+    i=0
+    token = finał[i]
+    lewa = parse_factor(finał , 0)
+    if finał[i +1][0] =="STAR":
+        prawa =parse_factor(finał, i+2)
+        return BinaryOp(left=lewa , op="*" , right=prawa)
+    
+print(parse_term(finał))
+
+            
