@@ -1,4 +1,4 @@
-from nauka import finał
+from nauka import final
 
 matma = "2 + 3 * 4"
 
@@ -36,12 +36,18 @@ węzeł_dodawania = BinaryOp(left=Number(2) , op ="+" , right=węzeł_mnożenia)
 
 #print(węzeł_dodawania)
 
+#for typ , wartosc in finał
+#if typ =="NUMBER":
+#liczba = int(wartosc)
+#print(liczba)
 
 
-def bierz_wartosci(finał):
+
+
+def bierz_wartosci(final):
     lewa = None
     Operator = None
-    for cotojest in finał:
+    for cotojest in final:
         if lewa != None and Operator != None and cotojest[0] == "NUMBER":
             return BinaryOp(left=lewa , op= Operator , right=Number(cotojest[1]))
         if cotojest[0] == "NUMBER" and Operator == None:
@@ -57,29 +63,41 @@ def bierz_wartosci(finał):
 
 
 
-#print (bierz_wartosci(finał))
+#print (bierz_wartosci(final))
     
 
 
-def parse_factor(finał , i):
-    if finał[i][0] =="NUMBER":
-        return(Number(finał[i][1]))
+def parse_factor(final , i):
+    if final[i][0] =="NUMBER":
+        return(Number(final[i][1]))
     
-print(parse_factor(finał , 0))
+#print(parse_factor(final , 0))
         
 
 
 
 
 
-def parse_term (finał):
-    i=0
-    token = finał[i]
-    lewa = parse_factor(finał , 0)
-    if finał[i +1][0] =="STAR":
-        prawa =parse_factor(finał, i+2)
+def parse_term (final , i):
+    token = final[i]
+    lewa = parse_factor(final , i)
+    if  i+1 < len(final) and final[i +1][0] =="STAR" :
+        prawa =parse_factor(final, i+2)
         return BinaryOp(left=lewa , op="*" , right=prawa)
-    
-print(parse_term(finał))
+    elif i+1 < len(final) and final[i+1][0] == "PLUS":
+        return lewa
+    return lewa
 
-            
+    
+print(parse_term(final , 2))
+
+
+def parse_expression (final):
+    i=0
+    habibi = parse_term(final , i)
+    if final[i+1][0] =="PLUS":
+        yalla =parse_term(final , i+2)
+        return BinaryOp(left=habibi , op="PLUS" , right= yalla)            
+
+
+print(parse_expression(final))

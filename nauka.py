@@ -1,4 +1,4 @@
-text = "2+3"
+text = "2 * 3"
 
 lexer = ["LPAREN" , "NUMBER" , "PLUS" , "RPAREN" , "STAR" , "IDENTIFIER","MINUS"]
 
@@ -23,13 +23,13 @@ def sprawdz_cotojest(text):
 
     
 
-finał =[]
+final =[]
 for pojedynczo in text:      
     wynik = sprawdz_cotojest(pojedynczo)
     if wynik != None:
-        finał.append(wynik)
+        final.append(wynik)
         
-print(*finał)     
+print(*final)     
        
 
 
