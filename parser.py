@@ -63,23 +63,22 @@ def bierz_wartosci(final):
 
 
 
-#print (bierz_wartosci(final))
+print (bierz_wartosci(final))
     
 
 
 def parse_factor(final , i):
     if final[i][0] =="NUMBER":
         return(Number(final[i][1]))
+    if final[i][0] == "LPAREN":
+        return parse_expression(final , i+1)
     
-#print(parse_factor(final , 0))
-        
-
 
 
 
 
 def parse_term (final , i):
-    token = final[i]
+    
     lewa = parse_factor(final , i)
     if  i+1 < len(final) and final[i +1][0] =="STAR" :
         prawa =parse_factor(final, i+2)
@@ -89,15 +88,18 @@ def parse_term (final , i):
     return lewa
 
     
-print(parse_term(final , 2))
 
 
-def parse_expression (final):
-    i=0
+
+def parse_expression (final , i):
+    
     habibi = parse_term(final , i)
     if final[i+1][0] =="PLUS":
         yalla =parse_term(final , i+2)
-        return BinaryOp(left=habibi , op="PLUS" , right= yalla)            
+        return BinaryOp(left=habibi , op="PLUS" , right= yalla)
+    elif final[i+1][0] =="STAR":
+        return parse_term(final ,i)
+    return habibi            
 
 
-print(parse_expression(final))
+print(parse_expression(final , 0 ))
