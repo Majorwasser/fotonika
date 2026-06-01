@@ -63,15 +63,16 @@ def bierz_wartosci(final):
 
 
 
-print (bierz_wartosci(final))
+#print (bierz_wartosci(final))
     
 
 
-def parse_factor(final , i):
+def parse_factor(final ,i):
     if final[i][0] =="NUMBER":
-        return(Number(final[i][1]))
+        return(Number(final[i][1]) , i+1)
     if final[i][0] == "LPAREN":
-        return parse_expression(final , i+1)
+        wezel , nowy_i = parse_expression(final , i+1)
+        return(wezel , nowy_i +1)
     
 
 
@@ -79,13 +80,14 @@ def parse_factor(final , i):
 
 def parse_term (final , i):
     
-    lewa = parse_factor(final , i)
-    if  i+1 < len(final) and final[i +1][0] =="STAR" :
-        prawa =parse_factor(final, i+2)
-        return BinaryOp(left=lewa , op="*" , right=prawa)
-    elif i+1 < len(final) and final[i+1][0] == "PLUS":
-        return lewa
-    return lewa
+    
+    wezel , nowy_i = parse_factor(final , i)
+    if  i+1 < len(final) and final[nowy_i][0] =="STAR" :
+        wezel_prawy , nowy_i =parse_factor(final, nowy_i+1)
+        return (BinaryOp(left=wezel , op="*" , right=wezel_prawy), nowy_i)
+    elif i+1 < len(final) and final[nowy_i][0] == "PLUS":
+        return (wezel , nowy_i)
+    return (wezel , nowy_i)
 
     
 
@@ -93,13 +95,13 @@ def parse_term (final , i):
 
 def parse_expression (final , i):
     
-    habibi = parse_term(final , i)
-    if final[i+1][0] =="PLUS":
-        yalla =parse_term(final , i+2)
-        return BinaryOp(left=habibi , op="PLUS" , right= yalla)
-    elif final[i+1][0] =="STAR":
-        return parse_term(final ,i)
-    return habibi            
+    wezel , nowy_i = parse_term(final , i)
+    if nowy_i <len(final) and final[nowy_i][0] =="PLUS":
+        wezel_prawy , nowy_i =parse_term(final , nowy_i +1)
+        return (BinaryOp(left=wezel , op="PLUS" , right= wezel_prawy) , nowy_i)
+    elif nowy_i <len(final) and final[nowy_i][0] =="STAR":
+        return parse_term(final , nowy_i)
+    return (wezel   , nowy_i)        
 
 
 print(parse_expression(final , 0 ))
