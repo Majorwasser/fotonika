@@ -105,3 +105,15 @@ def parse_expression (final , i):
 
 
 print(parse_expression(final , 0 ))
+
+
+
+
+node,_ = parse_expression(final , 0)
+def evaluate(node):
+    if isinstance(node , Number):
+        return node.value
+    elif isinstance(node , BinaryOp):
+        return node.op
+
+print (evaluate(node))
