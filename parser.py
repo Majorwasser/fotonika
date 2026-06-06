@@ -69,7 +69,7 @@ def bierz_wartosci(final):
 
 def parse_factor(final ,i):
     if final[i][0] =="NUMBER":
-        return(Number(final[i][1]) , i+1)
+        return(Number(float(final[i][1])) , i+1)
     if final[i][0] == "LPAREN":
         wezel , nowy_i = parse_expression(final , i+1)
         return(wezel , nowy_i +1)
@@ -114,6 +114,18 @@ def evaluate(node):
     if isinstance(node , Number):
         return node.value
     elif isinstance(node , BinaryOp):
-        return node.op
+        
+        lewastrona = node.left
+        operator = node.op
+        prawastrona = node.right        
+        lewawartosc = evaluate (lewastrona) 
+        prawawartosc = evaluate(prawastrona)
+    if operator == "PLUS":
+        return lewawartosc + prawawartosc
+    elif operator == "*":
+        return lewawartosc * prawawartosc
+
+        
+     
 
 print (evaluate(node))
