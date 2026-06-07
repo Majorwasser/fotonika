@@ -18,6 +18,9 @@ class BinaryOp:
     left:str
     op:str
     right:str
+@dataclass
+class Variable:
+    name:str
     
 left = Number(3)
 op = "*"
@@ -73,6 +76,8 @@ def parse_factor(final ,i):
     if final[i][0] == "LPAREN":
         wezel , nowy_i = parse_expression(final , i+1)
         return(wezel , nowy_i +1)
+    if final[i][0] == "IDENTIFIER":
+        return(Variable(final[i][1]) , i+1)
     
 
 
@@ -111,6 +116,7 @@ print(parse_expression(final , 0 ))
 
 node,_ = parse_expression(final , 0)
 def evaluate(node):
+    
     if isinstance(node , Number):
         return node.value
     elif isinstance(node , BinaryOp):
@@ -120,10 +126,14 @@ def evaluate(node):
         prawastrona = node.right        
         lewawartosc = evaluate (lewastrona) 
         prawawartosc = evaluate(prawastrona)
-    if operator == "PLUS":
-        return lewawartosc + prawawartosc
-    elif operator == "*":
-        return lewawartosc * prawawartosc
+        if operator == "PLUS":
+            return lewawartosc + prawawartosc
+        elif operator == "*":
+            return lewawartosc * prawawartosc
+    elif isinstance(node , Variable):
+            zmienna = node.name
+            slownik = {"x":5}
+            return slownik[zmienna]
 
         
      

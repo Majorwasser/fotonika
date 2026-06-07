@@ -1,4 +1,4 @@
-text = "9+3*8"
+text = "x+3"
 
 lexer = ["LPAREN" , "NUMBER" , "PLUS" , "RPAREN" , "STAR" , "IDENTIFIER","MINUS"]
 
