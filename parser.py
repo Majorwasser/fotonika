@@ -27,22 +27,10 @@ op = "*"
 right = Number(4)
 
 
-t = BinaryOp( 
-left = left,
-op = op,
-right = right,
-)
-
-węzeł_mnożenia = BinaryOp(left=Number(3) , op ="*", right =Number(4))
-węzeł_dodawania = BinaryOp(left=Number(2) , op ="+" , right=węzeł_mnożenia)
 
 
-#print(węzeł_dodawania)
 
-#for typ , wartosc in finał
-#if typ =="NUMBER":
-#liczba = int(wartosc)
-#print(liczba)
+
 
 
 
