@@ -103,6 +103,37 @@ def evaluate(node):
                 slownik = {"x":5}
                 return slownik[zmienna]
         
+def compile(node):
+    listainstrukcji = ["LOAD" , "ADD" , "MUL"]
+
+    if isinstance(node , Number):
+        return ["LOAD" + str(node.value)]
+    elif isinstance(node , BinaryOp):
+        operator =node.op
+        if operator=="PLUS":
+            lewastrona = compile(node.left)
+            prawastrona = compile(node.right)
+            plusik = ["ADD"]
+
+            outro = lewastrona + prawastrona + plusik
+            return outro
+        if operator == "*":
+            lewastrona = compile(node.left)
+            prawastrona = compile(node.right)
+            gwiazdka = ["MUL"]
+
+            finisz = lewastrona + prawastrona + gwiazdka
+            return finisz
+
+
+
+
+
+
+        
+    
+
+        
 
 
 
@@ -122,6 +153,10 @@ while True:
     print(parse_expression(final , 0 ))
     node,_ = parse_expression(final , 0)
     print (evaluate(node))
+    print (compile(node))
+
+
+
 
 
 
