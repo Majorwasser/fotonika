@@ -124,6 +124,9 @@ def compile(node):
 
             finisz = lewastrona + prawastrona + gwiazdka
             return finisz
+        
+
+
 
 
 
@@ -154,6 +157,10 @@ while True:
     node,_ = parse_expression(final , 0)
     print (evaluate(node))
     print (compile(node))
+    instrukcje = compile(node)
+    with open("plik.asm" , "w" , encoding="utf-8") as plik:
+        for elementy in instrukcje:
+            plik.write(f"instrukcje to: {elementy}\n")
 
 
 
