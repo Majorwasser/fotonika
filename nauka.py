@@ -158,7 +158,7 @@ while True:
     print (evaluate(node))
     print (compile(node))
     instrukcje = compile(node)
-    with open("plik.asm" , "w" , encoding="utf-8") as plik:
+    with open("plik.asm" , "w" czy) as plik:
         for elementy in instrukcje:
             plik.write(f"instrukcje to: {elementy}\n")
 
