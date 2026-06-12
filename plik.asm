@@ -1,3 +1,5 @@
-instrukcje to: LOAD3.0
-instrukcje to: LOAD2.0
-instrukcje to: ADD
+LOAD3.0
+LOAD4.0
+MUL
+LOAD2.0
+ADD
