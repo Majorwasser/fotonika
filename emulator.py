@@ -15,6 +15,6 @@ def czytanielinijek (linijki):
             b = stos.pop()
             a = stos.pop()
             stos.append(float(a) + float(b))
-        return stos
+    return stos
             
 print (czytanielinijek(linijki))

@@ -13,9 +13,6 @@ class BinaryOp:
 class Variable:
     name:str
     
-left = Number(3)
-op = "*"
-right = Number(4)
 
 
 
@@ -104,7 +101,7 @@ def evaluate(node):
                 return slownik[zmienna]
         
 def compile(node):
-    listainstrukcji = ["LOAD" , "ADD" , "MUL"]
+    
 
     if isinstance(node , Number):
         return ["LOAD" + str(node.value)]
@@ -153,7 +150,7 @@ while True:
             
     print(*final)
 
-    print(parse_expression(final , 0 ))
+    
     node,_ = parse_expression(final , 0)
     print (evaluate(node))
     print (compile(node))
